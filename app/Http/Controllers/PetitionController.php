@@ -54,9 +54,9 @@ class PetitionController extends Controller
         if (Petition::where('user_id', Auth::user()->id)->exists()) {
             return redirect(route('petition.status'));
         } else {
-            return 'Qabul muddati tugagan';
-            $date = '2022-01-10';
-            //if (date('Y-m-d') < $date) {
+            // return 'Qabul muddati tugagan';
+            $date = '2024-06-25';
+            if (date('Y-m-d') < $date) {
                 $country = Country::where('status', 1)->get();
                 $typeschool = Typeschool::query()->where('name_uz', 'Litsey')->get();
                 $endegree = Endegree::query()->where('filtr', 1)->get();
@@ -77,15 +77,10 @@ class PetitionController extends Controller
                     'disability' => $disability,
                     'high_schools' => $high_schools
                 ]);
-            //}
-            //else{
-             //   return "Qabul tez orada boshlanadi.";
-           // }
-
-
+            } else {
+                return "Qabul tez orada boshlanadi.";
+            }
         }
-
-
     }
 
     public function status()
@@ -106,7 +101,6 @@ class PetitionController extends Controller
             } else {
                 return redirect(route('check_status'));
             }
-
         }
     }
 
@@ -153,7 +147,7 @@ class PetitionController extends Controller
      */
     public function store(Request $request)
     {
-//         return $request;
+        //         return $request;
         $pat = new Petition();
         $validator = Validator::make($request->all(), $pat->rules);
         if ($validator->fails()) {
@@ -374,8 +368,6 @@ class PetitionController extends Controller
                 }
                 $pet->save();
                 return redirect(route('petition.status'));
-
-
             } else {
                 return redirect(route('check_status'));
             }
@@ -466,7 +458,6 @@ class PetitionController extends Controller
         } else {
             return redirect(route('check_status'));
         }
-
     }
 
     /**
@@ -543,7 +534,6 @@ class PetitionController extends Controller
                 if (isset($role[$value])) {
                     $re[$value] = $role[$value];
                 }
-
             }
             // return $re;
             if (Auth::check() && Auth::user()->role == 0) {
@@ -552,8 +542,8 @@ class PetitionController extends Controller
                 // return $pat->rules_update;
                 $validator = Validator::make($request->all(), $re);
                 if ($validator->fails()) {
-//                return $request->all();
-//                     return $validator->errors();
+                    //                return $request->all();
+                    //                     return $validator->errors();
                     return back()->withErrors($validator)->withInput();
                 } else {
                     if (Auth::check()) {
@@ -751,7 +741,6 @@ class PetitionController extends Controller
                                 // }
                                 // return "yoq";
                                 $pet->english_image = '';
-
                             }
                             // return $es_arr;
                             // // return "yoq";
@@ -768,13 +757,10 @@ class PetitionController extends Controller
                             if ($image->move('users/documents/recommendation_images', $image_name)) {
                                 $pet->image_recommendation = $image_name;
                             }
-
-
                         } else {
                             if (in_array('recommendation', $es_arr)) {
                                 $pet->image_recommendation = '';
                             }
-
                         }
                         if ($request->hasFile('workbook')) {
                             $fil_p = public_path('users/documents/workbook') . '/' . $pet->workbook;
@@ -787,13 +773,10 @@ class PetitionController extends Controller
                             if ($image->move('users/documents/workbook', $image_name)) {
                                 $pet->workbook = $image_name;
                             }
-
-
                         } else {
                             if (in_array('workbook', $es_arr)) {
                                 $pet->workbook = '';
                             }
-
                         }
                         if ($request->hasFile('passport_copy_translate')) {
                             $fil_p = public_path('users/documents/passport_images') . '/' . $pet->passport_copy_translate;
@@ -951,15 +934,11 @@ class PetitionController extends Controller
                         //     $k->delete();
                         // }
                         return redirect(route('petition.status'));
-
-
                     } else {
-
                     }
                 }
 
                 return $request;
-
             } else {
                 return redirect(route('check_status'));
             }
@@ -981,6 +960,4 @@ class PetitionController extends Controller
     {
         //
     }
-
-
 }
