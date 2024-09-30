@@ -87,7 +87,8 @@ return [
 	'Telefon raqam' => 'Phone number',
 	'Qoshimcha telefon raqam' => 'Additional phone number',
 	'Мазкур сайт алоҳида тоифадаги абитуриентларни ТДЮУ магистратурасига кириш учун рўйхатдан ўтиши учун мўлжалланган.' => "This site is designed for Lyceum graduate to be admitted to the bachelor's degree",
-    'olympics' => 'Xalqaro olimpiadalar yoki tanlovlarda hamda musobaqalarida qatnashganligi haqida (o`tkazilgan vaqti va egallagan o`rni)'
+    'olympics' => 'Xalqaro olimpiadalar yoki tanlovlarda hamda musobaqalarida qatnashganligi haqida (o`tkazilgan vaqti va egallagan o`rni)',
+    'Faculties' => 'Fakultet'
 
 
 

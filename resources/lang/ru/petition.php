@@ -118,6 +118,7 @@ return [
     'Ish faoliyati' => 'Трудовая деятельность',
     'Suhbat tili' => 'Язык собеседования',
     '3 yil ishlash majburiyati' => '3 yil ishlash majburiyati',
+    'Faculties' => 'Fakultet'
 
 
 

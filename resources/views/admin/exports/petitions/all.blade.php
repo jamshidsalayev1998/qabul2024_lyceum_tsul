@@ -86,7 +86,7 @@
 				Disability info
 			</td>
 			<td>
-				Univer
+				Fakultet
 			</td>
 
 		</tr>
@@ -186,7 +186,9 @@
 				{{ $item->disability_description }}
 			</td>
 			<td>
-{{--				{{ $item->high_school->$name_l }}--}}
+				@if ($item->direction)
+                {{ $item->direction->$name_l }}
+                @endif
 			</td>
 
 		</tr>

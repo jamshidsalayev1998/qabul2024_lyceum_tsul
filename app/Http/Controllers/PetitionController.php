@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Direction;
 use App\Petition;
 use App\Country;
 use App\Typeschool;
@@ -56,7 +57,7 @@ class PetitionController extends Controller
         } else {
             // return 'Qabul muddati tugagan';
             $date = '2024-06-25';
-            if (date('Y-m-d') < $date) {
+            if (date('Y-m-d') >= $date) {
                 $country = Country::where('status', 1)->get();
                 $typeschool = Typeschool::query()->where('name_uz', 'Litsey')->get();
                 $endegree = Endegree::query()->where('filtr', 1)->get();
@@ -65,6 +66,7 @@ class PetitionController extends Controller
                 $languagetype = Languagetype::all();
                 $disability = Disability::all();
                 $high_schools = HighSchool::where('status', 1)->get();
+                $directions = Direction::where('status' , 1)->get();
                 // return $typeschool;
                 // return $country;
                 return view('user.pages.petition.create', [
@@ -75,7 +77,8 @@ class PetitionController extends Controller
                     'edutypes' => $edutypes,
                     'languagetype' => $languagetype,
                     'disability' => $disability,
-                    'high_schools' => $high_schools
+                    'high_schools' => $high_schools,
+                    'directions' => $directions
                 ]);
             } else {
                 return "Qabul tez orada boshlanadi.";
@@ -190,6 +193,7 @@ class PetitionController extends Controller
                 $pet->olympics = $request->olympics;
                 $pet->labor_activity = $request->labor_activity;
                 $pet->conversation_language = $request->conversation_language;
+                $pet->direction_id = $request->direction_id;
                 if ($request->high_school_id == 3) {
                     $pet->punkt = $request->punkt;
                 }
@@ -430,6 +434,7 @@ class PetitionController extends Controller
             $languagetype = Languagetype::whereIn('id', $edl)->get();
             $disability = Disability::all();
             $edits = Editing::where('petition_id', $id)->get();
+            $directions = Direction::where('status' , 1)->get();
             $i = 0;
             $a = [];
 
@@ -450,7 +455,8 @@ class PetitionController extends Controller
                     'languagetype' => $languagetype,
                     'disability' => $disability,
                     'edits' => $a,
-                    'high_schools' => $high_schools
+                    'high_schools' => $high_schools,
+                    'directions' => $directions
                 ]);
             } else {
                 return redirect(url()->previous());
@@ -572,6 +578,7 @@ class PetitionController extends Controller
                         if ($request->graduation_date) $pet->graduation_date = $request->graduation_date;
                         if ($request->diplom_number) $pet->diplom_number = $request->diplom_number;
                         if ($request->english_degree) $pet->english_degree = $request->english_degree;
+                        if ($request->direction_id) $pet->direction_id = $request->direction_id;
 
                         if ($request->overall_score_english) $pet->overall_score_english = $request->overall_score_english;
                         if ($request->ilts_number) $pet->ilts_number = $request->ilts_number;

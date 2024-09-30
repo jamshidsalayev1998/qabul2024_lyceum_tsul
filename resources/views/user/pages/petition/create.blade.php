@@ -492,6 +492,18 @@
                             </select>
                         </div>
                         <div class="divinput">
+                            <h2>@lang('petition.Faculties') <span class="color-red">*</span>
+                                <b>@error('direction_id')
+                                    ! {{ $message }} @enderror</b></h2>
+                            <select class="form-control" id="direction_id" name="direction_id"
+                                    style="width: 100%;">
+                                @foreach($directions as $direction)
+                                    <option @if(old('direction_id') == $direction->id) selected
+                                            @endif value="{{ $direction->id }}">{{ $direction->$name_l }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="divinput">
                             <h2>@lang('petition.Tavfsiyanoma nusxasi') <b>@error('recommendation')
                                     ! {{ @message }} @enderror</b></h2>
                             <div class="col-md-6">

@@ -119,6 +119,7 @@ return [
     'Ish faoliyati' => 'Mehnat faoliyatim',
     'Suhbat tili' => 'Suhbat o\'tkazish tili',
     '3 yil ishlash majburiyati' => 'Magistraturada o\'qishni tugatgandan so`ng kamida uch yil uzluksiz ishlash majburiyati bilan tanishdim',
+    'Faculties' => 'Fakultet'
 
 ];
 
